@@ -1,7 +1,78 @@
-html, body {
-	height: 100%;
+* {
+	box-sizing: border-box;
 }
 
-body, p {
+html, body {
+	height: 100%;
+
+}
+
+body, p, blockquote {
 	margin: 0;
+}
+
+/* CONTAINER */
+
+.container {
+    height: 100%;
+}
+
+/* QUOTE CONTAINER */
+
+.quote-container {
+    padding: 0 1em;
+    margin: 0 auto;
+    text-align: center;
+    top: 50%;
+    position: relative;
+    transform: translateY(-50%);
+}
+
+/* BLOCKQUOTE */
+
+blockquote {
+	font-size: 5vh;
+    line-height: 1.25;
+}
+
+
+/* QUOTES */
+
+#quote:before {
+	content: "\201C";
+}
+
+#quote:after {
+	content: "\201D";
+}
+
+/* AUTHOR */
+#author:before {
+	content: "\2014";
+}
+
+
+/* NEW QUOTE BUTTON */
+
+#new-quote {
+	position: absolute;
+    bottom: 10vh;
+    left: 50%;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+#new-quote p {
+	padding: 10px;
+    border: 1px solid black;
+    background: orange;
+}
+
+/* ATTRIBUTION */
+
+.attribution {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    text-align: center;
 }

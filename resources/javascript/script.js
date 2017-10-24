@@ -11,11 +11,12 @@ request.onreadystatechange = function() {
 			var data = JSON.parse(request.responseText);
 			console.log(data.length);
 
-			// Show first quote as default
-			document.getElementById("quote").innerHTML = data[quoteNumber]["quote"] + "By" + data[quoteNumber]["author"];
+			// Show first quote and its author as default
+			document.getElementById("quote").innerHTML = data[quoteNumber]["quote"];
+			document.getElementById("author").innerHTML = data[quoteNumber]["author"];
 
 			// If user clicks new quote buttton, move to next quote in data
-			document.getElementById("newquote").onclick = function() {
+			document.getElementById("new-quote").onclick = function() {
 				// Move to next quote
 				quoteNumber++;
 
@@ -24,8 +25,9 @@ request.onreadystatechange = function() {
 					quoteNumber = 0; 
 				}
 
-				// Update quote
-				document.getElementById("quote").innerHTML = data[quoteNumber]["quote"] + "By" + data[quoteNumber]["author"];
+				// Update quote and author
+				document.getElementById("quote").innerHTML = data[quoteNumber]["quote"];
+				document.getElementById("author").innerHTML = data[quoteNumber]["author"];
 			}
 
 
