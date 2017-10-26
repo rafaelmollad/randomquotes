@@ -46,6 +46,12 @@ blockquote {
     letter-spacing: 2px;
 }
 
+@media all and (orientation: portrait) {
+    blockquote {
+        font-size: 4vh;
+    }
+}
+
 
 /* QUOTES */
 
@@ -88,6 +94,7 @@ blockquote {
 
 #new-quote a {
     color: #fff;
+    user-select: none;
 }
 
 /* SHARE ON TWITTER ICON */
@@ -96,6 +103,6 @@ blockquote {
     color: #fff;
     font-size: 6vh;
     position: absolute;
-    right: 35px;
-    top: 15px;
+    right: 80px;
+    top: 40px;
 }
