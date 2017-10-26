@@ -2,9 +2,25 @@ var request = new XMLHttpRequest();
 request.open("GET", "https://random-quote-generator.herokuapp.com/api/quotes/", true);
 request.send();
 
-var quoteNumber = 0;
 var colors = ['#f1c40f', '#34495e', '#2ecc71', '#e74c3c', '#d35400', '#3498db'];
 var twitterWebIntent = "https://twitter.com/intent/tweet?text=";
+
+// Update quote and author
+function updateQuote(quotes, qNumber) {
+	document.getElementById("quote").innerHTML = quotes[qNumber]["quote"];
+	document.getElementById("author").innerHTML = quotes[qNumber]["author"];
+}
+
+// Generate a random number
+function randomNumber(number) {
+	return Math.floor(Math.random() * number);
+}
+
+// Change background color
+function changeBackground() {
+	document.body.style.background = colors[randomNumber(colors.length)];
+
+}
 
 request.onreadystatechange = function() {
 	if (request.readyState == 4) {
@@ -12,34 +28,32 @@ request.onreadystatechange = function() {
 			// Transform JSON to a Javascript object
 			var data = JSON.parse(request.responseText);
 
-			// Show first quote and its author as default
-			document.getElementById("quote").innerHTML = data[quoteNumber]["quote"];
-			document.getElementById("author").innerHTML = data[quoteNumber]["author"];
+			// Change background color
+			changeBackground();
+
+			// Generate a random quote
+			var quoteNumber = randomNumber(data.length);
+			
+			// Call function to update quote and author
+			updateQuote(data, quoteNumber);
 
 			// First quote as default for sharing
 			var shareQuote = twitterWebIntent + data[quoteNumber]["quote"] + " by " + data[quoteNumber]["author"] + "&hashtags=randomquotes"; 
 
-
 			// If user clicks new quote buttton, move to next quote in data
 			document.getElementById("new-quote").onclick = function() {
-				// Move to next quote
-				quoteNumber++;
 
-				// Are we outside of the array limit? If so, go back to first quote
-				if (quoteNumber == data.length) {
-					quoteNumber = 0; 
-				}
+				// Generate a random quote
+				var quoteNumber = randomNumber(data.length);
 
-				// Update quote and author
-				document.getElementById("quote").innerHTML = data[quoteNumber]["quote"];
-				document.getElementById("author").innerHTML = data[quoteNumber]["author"];
+				// Call function to update quote and author
+				updateQuote(data, quoteNumber);
 
 				// Update twitter share url when user clicks new quote
 				shareQuote = twitterWebIntent + data[quoteNumber]["quote"] + " by " + data[quoteNumber]["author"] + "&hashtags=randomquotes";
 
-				// Change background color when user clicks new quote
-				var newColor = Math.floor(Math.random() * 6);
-				document.body.style.background = colors[newColor];
+				// Change background color
+				changeBackground();
 
 			}
 
