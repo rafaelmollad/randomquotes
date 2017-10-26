@@ -89,3 +89,13 @@ blockquote {
 #new-quote a {
     color: #fff;
 }
+
+/* SHARE ON TWITTER ICON */
+
+.ion-social-twitter {
+    color: #fff;
+    font-size: 6vh;
+    position: absolute;
+    right: 35px;
+    top: 15px;
+}
